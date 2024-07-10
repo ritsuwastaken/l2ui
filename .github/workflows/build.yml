@@ -1,6 +1,11 @@
 name: build
 
-on: push
+on: 
+  push:
+    paths:
+      - '.github/**'
+      - CMakeLists.txt
+      - l2ui.cpp
 
 permissions:
   contents: write

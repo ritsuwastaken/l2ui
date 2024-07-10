@@ -21,10 +21,6 @@ set_target_properties(${LIBRARY_NAME} PROPERTIES
     SOVERSION 1
 )
 
-target_include_directories(${LIBRARY_NAME}
-    PRIVATE ${CMAKE_SOURCE_DIR}/src
-)
-
 target_link_libraries(${LIBRARY_NAME} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
 install(TARGETS ${LIBRARY_NAME}

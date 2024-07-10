@@ -1,0 +1,34 @@
+cmake_minimum_required(VERSION 3.26)
+
+project(L2UI VERSION 1.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(LIBRARY_NAME "l2ui")
+
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
+
+add_definitions(-DUNICODE -D_UNICODE)
+
+file(GLOB_RECURSE SOURCES l2ui.cpp)
+
+add_library(${LIBRARY_NAME} ${SOURCES})
+
+set_target_properties(${LIBRARY_NAME} PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION 1
+)
+
+target_include_directories(${LIBRARY_NAME}
+    PRIVATE ${CMAKE_SOURCE_DIR}/src
+)
+
+target_link_libraries(${LIBRARY_NAME} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+
+install(TARGETS ${LIBRARY_NAME}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
